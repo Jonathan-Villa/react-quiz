@@ -3,7 +3,7 @@ import { makeStyles, useTheme } from "@material-ui/core";
 const drawerWidth = 200;
 const navBarStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
+
   },
   drawer: {
     [theme.breakpoints.up("sm")]: {

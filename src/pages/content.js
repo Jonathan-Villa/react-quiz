@@ -1,9 +1,13 @@
 import React from "react";
+import {TabBar} from "./components/tabs/tabs"
+import { Tab } from "@material-ui/core"
 
 function Content() {
   return (
     <div className="main-container">
-      <h1>Content </h1>
+      <TabBar/>
+
+
     </div>
   );
 }
