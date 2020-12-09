@@ -56,5 +56,7 @@
 <p><a href = "index.html">Return to Main Page</a></p>
 
 </main>
+<script src = "quiz_builder.js"></script>
+<script src = "jquery-3.5.1.js"></script>
 </body>
 </html>
