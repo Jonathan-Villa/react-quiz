@@ -2,7 +2,7 @@ import { Provider } from "react-redux";
 import store from "./redux/store/store";
 import { Route, Switch} from "react-router-dom";
 import {Home, Content} from "./pages"
-import NavBar from "./pages/components/navbar";
+import NavBar from "./Components/NavBar/navbar";
 
 function App() {
   return (
