@@ -4,6 +4,7 @@ import { TabList, TabPanel, TabContext } from "@material-ui/lab";
 import {useTabStyles} from "./tabStyles"
 import { CreateQuiz } from "../TabPanels";
 
+
 function TabBar({component: Component, component2:Component2 }) {
   const [tabValue, setTabValue] = useState("1");
   const styles = useTabStyles()
@@ -18,11 +19,11 @@ function TabBar({component: Component, component2:Component2 }) {
         <AppBar className={styles.appBar} position="static">
           <TabList onChange={handleTabChange} aria-label="Create Question">
             <Tab label="Create Question" value="1" />
-            <Tab label="Delete Question" value="2" />
+            <Tab label="Quiz" value="2" />
           </TabList>
         </AppBar>
         <TabPanel value="1">
-          <Component/>
+          <Component />
         </TabPanel>
         <TabPanel value="2">
           <Component2/>
