@@ -22,14 +22,12 @@ import { useDispatch } from "react-redux";
 import { getNumberOfQuestions } from "../Quiz/displayQuiz";
 import { submitQuizAction } from "../../../redux/actions/submitQuiz";
 
-function CreateQuiz(props) {
+function CreateQuiz() {
   const styles = useStyles();
+  const dispatch = useDispatch();
   const [sprintTxt, bindSprintTxt, resetSprintTxt] = useInputs("");
   const [click, setClick] = useState(false);
-  const [click2, setClick2] = useState(false);
-  const dispatch = useDispatch();
   const [txtField, setTxtField] = useState([]);
-  const [answers, setAnswers] = useState([]);
 
   const displayQuestionType = (type) => {
     // Based on menu select -- display respective component
@@ -44,12 +42,9 @@ function CreateQuiz(props) {
         return;
     }
   };
-
-  console.log(answers)
-
   const handleClick = () => {
     setClick(() => true);
-    setTxtField([...txtField, { question: "" }]);
+    setTxtField([...txtField, { question: "", answerOne: "", answerTwo: "", answerThree: "", answerFour: "", correctAnswer: "" }]);
   };
 
   const handleDecrement = (e) => {
@@ -67,15 +62,14 @@ function CreateQuiz(props) {
     setTxtField(values);
   };
 
-  console.log(sprintTxt);
+  console.log(txtField)
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const payload = {
       questions: txtField,
-      sprint: sprintTxt,
-      answers: answers
+      sprint: sprintTxt
     };
     // store in redux store
     dispatch(submitQuizAction(payload));
@@ -85,30 +79,10 @@ function CreateQuiz(props) {
     resetSprintTxt();
   };
 
-  const handleAnswerClick = () => {
-    setClick2(() => true);
-    setAnswers([...answers, { answers: "" }]);
-  };
-
-  const handleAnswerDecrement = () => {
-    let copyList = [...answers];
-
-    copyList.splice(0, 1);
-
-    setAnswers(copyList);
-  };
-
-  const handleAnswerChange = (e, key) => {
-    const values = [...answers];
-
-    values[key][e.target.name] = e.target.value;
-
-    setAnswers(values);
-  };
 
   return (
     <Container className={styles.root} maxWidth="md">
-      <Paper className={styles.paper} elevation={3}>
+      <Paper className={styles.paper} elevation={0}>
         <form className={styles.form} onSubmit={handleSubmit}>
           <Typography className={styles.heading} variant="h3">
             Create Quiz
@@ -137,12 +111,12 @@ function CreateQuiz(props) {
               <div className={styles.txtFieldContainer}>
                 <div className={styles.questionBtnContainer}>
                   <Tooltip title="Add new question">
-                    <IconButton onClick={() => handleClick()}>
+                    <IconButton onClick={handleClick}>
                       <AiFillPlusCircle />
                     </IconButton>
                   </Tooltip>
                   <Tooltip title="Delete question">
-                    <IconButton onClick={() => handleDecrement()}>
+                    <IconButton onClick={handleDecrement}>
                       <FaTrashAlt />
                     </IconButton>
                   </Tooltip>
@@ -150,67 +124,45 @@ function CreateQuiz(props) {
 
                 {click
                   ? txtField.map((element, key) => (
-                      <Paper
-                        elevation={1}
-                        className={styles.createQuestionContainer}
-                      >
-                        <Typography variant="h6">Enter the Question</Typography>
-                        <TextField
-                          key={key}
-                          label="Question"
-                          size="small"
-                          required
-                          className={styles.questionTxt}
-                          variant="outlined"
-                          fullWidth={false}
-                          name="question"
-                          value={element.question}
-                          onChange={(e) => handleNewTxtFieldChange(e, key)}
-                        />
-                        <hr />
-                        <div className={styles.answersContainer}>
-                          <div>
-                            <Tooltip title="Create new answer">
-                              <IconButton onClick={() => handleAnswerClick()}>
-                                <AiFillPlusCircle size="20px" />
-                              </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Delete Answer">
-                              <IconButton
-                                onClick={() => handleAnswerDecrement()}
-                              >
-                                <FaTrashAlt size="20px" />
-                              </IconButton>
-                            </Tooltip>
-                          </div>
+                    <Paper
+                      elevation={3}
+                      className={styles.createQuestionContainer}
+                    >
+                      <Typography variant="h6">Enter the Question</Typography>
+                      <TextField
+                        key={key}
+                        label="Question"
+                        size="small"
+                        required
+                        className={styles.questionTxt}
+                        variant="outlined"
+                        fullWidth={false}
+                        name="question"
+                        value={element.question}
+                        onChange={(e) => handleNewTxtFieldChange(e, key)}
+                      />
+                      <hr />
+                      <div className={styles.answersContainer}>
+                        <div>
                           <Typography variant="h6">
                             Enter the possible answers
                           </Typography>
-                          {click2
-                            ? answers.map((m, key) => (
-                                <TextField
-                                  fullWidth={false}
-                                  onChange={(e) => handleAnswerChange(e, key)}
-                                  name="answers"
-                                  value={m.answers}
-                                  className={styles.questionTxt}
-                                  label="Answers"
-                                  variant="outlined"
-                                  size="small"
-                                  key={key}
-                                />
-                              ))
-                            : null}
+                          <div className={styles.answersContainer}>
+                            <TextField label="Answer1" onChange={(e) => handleNewTxtFieldChange(e, key)} name="answerOne" value={element.answerOne} size="small" color="primary" variant="outlined" />
+                            <TextField label="Answer2" onChange={(e) => handleNewTxtFieldChange(e, key)} name="answerTwo" value={element.answerTwo} size="small" color="primary"  variant="outlined" />
+                            <TextField label="Answer3" onChange={(e) => handleNewTxtFieldChange(e, key)} name="answerThree" value={element.answerThree} size="small" color="primary"  variant="outlined" />
+                            <TextField label="Answer4" onChange={(e) => handleNewTxtFieldChange(e, key)} name="answerFour" value={element.answerFour} size="small" color="primary"  variant="outlined" />
+                          </div>
+                          <div className={styles.answersContainer}>
+                            <Typography>Enter the correct answer</Typography>
+                            <TextField label="Correct Answer" variant="outlined" value={element.correctAnswer} size="small" color="primary"  name="correctAnswer" onChange={(e) => handleNewTxtFieldChange(e, key)} />
+                          </div>
                         </div>
-                      </Paper>
-                    ))
+                      </div>
+                    </Paper>
+                  ))
                   : null}
               </div>
-
-              {/* <QuestionContainer typeQuestion={setType} />
-              <div>
-                {displayQuestionType(type)}
-              </div> */}
             </div>
           </div>
 

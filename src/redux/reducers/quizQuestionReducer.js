@@ -6,6 +6,7 @@ export const quizQuestionReducer = (state = {}, action) => {
       return {
         ...state,
         payload: action.payload,
+
       };
 
     default:

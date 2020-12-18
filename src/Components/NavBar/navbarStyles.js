@@ -12,11 +12,11 @@ const navBarStyles = makeStyles((theme) => ({
     },
   },
   appBar: {
-    backgroundColor:"#072ac8",
+    backgroundColor: "#343a40",
     [theme.breakpoints.up("sm")]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
-      backgroundColor:"#072ac8"
+      backgroundColor: "#343a40"
     },
   },
   menuButton: {
@@ -27,11 +27,13 @@ const navBarStyles = makeStyles((theme) => ({
   },
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
+    backgroundColor: "#343a40",
+
     width: drawerWidth,
   },
   links: {
     textDecoration: "none",
-    color:"black",    
+    color: "#ffff",
     fontSize: '17px',
     height: '30px',
 
