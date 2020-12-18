@@ -27,6 +27,7 @@ function DisplayQuiz() {
       <Paper className={styles.paper} elevation={0}>
         <div>
           <Typography variant="h4">Quiz</Typography>
+          <Typography variant="h6" > Sprint: {questionsPayload.sprint}</Typography>
         </div>
 
         <div className={styles.questionsRoot}>

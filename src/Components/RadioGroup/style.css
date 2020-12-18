@@ -1,0 +1,10 @@
+#paper{
+    animation: paperAnimate .6s ease-in-out;
+
+}
+
+
+@keyframes paperAnimate{
+    0%{transform: translateY(40px); opacity: 0;}
+    100%{transform: translateY(0px); opacity: 1;}
+}

@@ -5,8 +5,16 @@ export const useStyles = makeStyles((theme)=> ({
         width:"100%",
         display:"flex",
         flexDirection:"column",
+        margin:"20px 10px",
+
+    },
+    formControl:{
+        padding:"10px"
+    },
+    radioGroup:{
+        marginLeft: theme.spacing(2)
     },
     heading:{
-        marginTop: theme.spacing(3)
+        margin: theme.spacing(1),
     }
 }))

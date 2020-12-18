@@ -9,7 +9,7 @@ export const useStyles = makeStyles(() => ({
   questionsRoot: {
     display: "flex",
     flexDirection: "column",
-    margin:"50px 0px"
+    margin:"25px 0px",
   },
   questionsList: {
     display: "flex",
